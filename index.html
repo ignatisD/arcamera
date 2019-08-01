@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AR Camera</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Ignatios Drakoulas" />
+    <meta name="description" content="AR Camera Demo">
+    <meta name="theme-color" content="#373b44" />
+    <base href="/" />
+    <style>
+        html, body {
+            background: rgb(40, 74, 72);
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #get-started {
+            display: none;
+            padding: 8px 12px;
+            background: #FFF;
+            border: none;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        #test {
+            padding: 8px 12px;
+            background: #FFF;
+            border: none;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        #get-started.visible {
+            display: block;
+        }
+
+        dot-loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        data-card.no-support {
+            opacity: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s cubic-bezier(0, 0, 0.3, 1) forwards 0.2s;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 90vw;
+        }
+
+        onboarding-card {
+            --background: #82C4CA;
+            --buttonActiveColor: #323662;
+            --buttonHoverColor: #323662c8;
+            --buttonInactiveColor: #32366294;
+            --buttonBottomMargin: 12px;
+            --padding: 0 0 36px 0;
+            --contentBorderRadius: 4px 4px 0 0;
+            opacity: 0;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s cubic-bezier(0, 0, 0.3, 1) forwards 0.2s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+        .text-center {
+            text-align: center;
+        }
+        .spacetop {
+            margin-top: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="./node_modules/perception-toolkit/styles/perception-toolkit.css">
+    <script>
+	    var idbKeyval=function(e){"use strict";class t{constructor(e="keyval-store",t="keyval"){this.storeName=t,this._dbp=new Promise((r,n)=>{const o=indexedDB.open(e,1);o.onerror=(()=>n(o.error)),o.onsuccess=(()=>r(o.result)),o.onupgradeneeded=(()=>{o.result.createObjectStore(t)})})}_withIDBStore(e,t){return this._dbp.then(r=>new Promise((n,o)=>{const s=r.transaction(this.storeName,e);s.oncomplete=(()=>n()),s.onabort=s.onerror=(()=>o(s.error)),t(s.objectStore(this.storeName))}))}}let r;function n(){return r||(r=new t),r}return e.Store=t,e.get=function(e,t=n()){let r;return t._withIDBStore("readonly",t=>{r=t.get(e)}).then(()=>r.result)},e.set=function(e,t,r=n()){return r._withIDBStore("readwrite",r=>{r.put(t,e)})},e.del=function(e,t=n()){return t._withIDBStore("readwrite",t=>{t.delete(e)})},e.clear=function(e=n()){return e._withIDBStore("readwrite",e=>{e.clear()})},e.keys=function(e=n()){const t=[];return e._withIDBStore("readonly",e=>{(e.openKeyCursor||e.openCursor).call(e).onsuccess=function(){this.result&&(t.push(this.result.key),this.result.continue())}}).then(()=>t)},e}({});
+		window.WebComponents = window.WebComponents || {};
+		window.WebComponents.root = '/node_modules/@webcomponents/webcomponentsjs/';
+    </script>
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<!--    <script type="application/ld+json" src="assets/mymap.jsonld"></script>-->
+</head>
+<body>
+    <div class="container"></div>
+    <div class="text-center">
+        <button id="get-started">Get Started</button>
+        <div class="text-center spacetop">
+            <button id="test">Test</button>
+        </div>
+    </div>
+    <script>
+	    async function init() {
+		    const onboarded = await idbKeyval.get('onboarded');
+		    if (!onboarded) {
+			    // Store for next time.
+			    await idbKeyval.set('onboarded', true);
+		    }
+		    const cardContainer = document.body.querySelector('.container');
+            // Config - place above the previous script element.
+            window.PerceptionToolkit = window.PerceptionToolkit || {};
+            window.PerceptionToolkit.config = {
+                // The location of the installed toolkit.
+                root: './node_modules/perception-toolkit',
+
+                // The element used to launch the experience.
+                button: document.getElementById('get-started'),
+                cardContainer: cardContainer,
+                // Whether to show the onboarding flow. Note that this is superseded
+                // internally by a flag
+                onboarding: !onboarded,
+                // Which images to show in carousel during onboarding
+                onboardingImages: [
+                    '/assets/img/step1.jpg',
+                    '/assets/img/step2.jpg',
+                    '/assets/img/step3.jpg'
+                ],
+	            sitemapUrl: ["/assets/mymap.jsonld"],
+	            showLoaderDuringBoot: true,
+                onload: function () {
+                    addEventListeners();
+                }
+            };
+            function addEventListeners() {
+                const { Events, Elements } = window.PerceptionToolkit;
+                window.addEventListener(Events.PerceivedResults, (evt) => {
+                    const { found, lost } = evt.detail;
+                    // First, automatically remove any "not recognized" cards if we now have content.
+                    if (found.length !== 0) {
+                        const notRecognizedCard =
+                                  cardContainer.querySelector('[data-not-recognized]');
+                        if (notRecognizedCard) {
+                            notRecognizedCard.remove();
+                        }
+                    }
+                    // ...If we still have any cards on screen, leave them there.
+                    // Note: Alternatively, could create a carousel of results.
+                    if (cardContainer.childNodes.length > 0) {
+                        return;
+                    }
+                    // If this is an unrecognized result.  Let's create an "error" card.
+                    if (found.length === 0 && found.length === 0) {
+                        // Take ownership of rendering.
+                        evt.preventDefault();
+                        /*
+                         * Dig In here.  Customize what to do in case of error!
+                         */
+                        const card = new Elements.Card();
+                        card.src = 'Sorry, this item was not recognized.';
+                        card.dataset.notRecognized = true;
+                        cardContainer.appendChild(card);
+                        return;
+                    }
+
+                    // If this is a new result, show a custom card, in order to create a share button.
+                    if (found.length > 0) {
+                        // Take ownership of rendering.
+                        evt.preventDefault();
+                        const card = new Elements.Card();
+                        card.src = found[0].artifact.arContent;
+	                    card.addEventListener('click', () => {
+		                    alert('clicked');
+		                    card.close();
+	                    });
+                        cardContainer.appendChild(card);
+                        return;
+                    }
+                });
+                // Fires the if the user denies camera access.
+                window.addEventListener(Events.CameraAccessDenied, () => {
+                    const card = new Elements.Card();
+                    card.src = 'Camera unavailable or access denied';
+                    cardContainer.appendChild(card);
+                });
+                // Fires the if the device does not have the required APIs.
+                window.addEventListener(Events.DeviceNotSupported, () => {
+                    console.warn('Device Not Supported');
+                });
+
+	            document.getElementById('test').addEventListener("click", (evt) => {
+	                evt.preventDefault();
+	                const card = new Elements.Card();
+	                card.src = 'Sorry, this item was not recognized.';
+	                card.dataset.notRecognized = true;
+	                cardContainer.appendChild(card);
+                })
+            }
+            // Embed the toolkit.
+            const toolkit = document.createElement('script');
+            toolkit.src = '/node_modules/perception-toolkit/lib/bundled/bootstrap.js';
+            document.head.appendChild(toolkit);
+	    }
+	    init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+[
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "ARImageTarget",
+      "name": "Squoosh.app",
+      "image": "https://io.perceptiontoolkit.dev/static/images/target-src/squoosh.app.png",
+      "encoding": [
+        {
+          "@type": "MediaObject",
+          "contentUrl": "https://io.perceptiontoolkit.dev/static/images/targets/squoosh.app.pb",
+          "encodingFormat": "application/octet+pd"
+        }
+      ]
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/squoosh.app/",
+      "name": "Squoosh.app",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/squoosh.app.jpg",
+      "description": "Image Compression Made Easy",
+      "mainEntity": {
+        "url": "https://squoosh.app"
+      }
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "Barcode",
+      "text": "LIG-hth-OUSE"
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/lighthouse/",
+      "name": "Lighthouse",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/lighthouse.jpg",
+      "description": "Test your website",
+      "mainEntity": {
+        "url": "https://developers.google.com/web/tools/lighthouse"
+      }
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "ARImageTarget",
+      "name": "web.dev",
+      "image": "https://io.perceptiontoolkit.dev/static/images/target-src/web.dev.jpg",
+      "encoding": [
+        {
+          "@type": "MediaObject",
+          "contentUrl": "https://io.perceptiontoolkit.dev/static/images/targets/web.dev.pb",
+          "encodingFormat": "application/octet+pd"
+        }
+      ]
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/web.dev/",
+      "name": "web.dev",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/web.dev.jpg",
+      "description": "Powered by Lighthouse",
+      "mainEntity": {
+        "url": "https://web.dev/"
+      }
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "Barcode",
+      "text": "ROT-avo-FTW"
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/rotavo/",
+      "name": "Rotavo",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/rotavo.jpg",
+      "description": "Draw and share",
+      "mainEntity": {
+        "url": "https://rotavo-pwa.firebaseapp.com/"
+      }
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "Barcode",
+      "text": "https://io.perceptiontoolkit.dev/details/pagespeed-insights/"
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/pagespeed-insights/",
+      "name": "Pagespeed Insights",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/pagespeed-insights.jpg",
+      "description": "Powered by Lighthouse",
+      "mainEntity": {
+        "url": "https://developers.google.com/speed/pagespeed/insights/"
+      }
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "ARImageTarget",
+      "name": "Perception Toolkit",
+      "image": "https://io.perceptiontoolkit.dev/static/images/target-src/perception-toolkit.jpg",
+      "encoding": [
+        {
+          "@type": "MediaObject",
+          "contentUrl": "https://io.perceptiontoolkit.dev/static/images/targets/perception-toolkit.pb",
+          "encodingFormat": "application/octet+pd"
+        }
+      ]
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/perception-toolkit/",
+      "name": "Perception Toolkit",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/perception-toolkit.jpg",
+      "description": "Navigate by Camera",
+      "mainEntity": {
+        "url": "https://perceptiontoolkit.dev/"
+      }
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "Barcode",
+      "text": "https://io.perceptiontoolkit.dev/details/wasm/"
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/wasm/",
+      "name": "WebAssembly",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/wasm.jpg",
+      "description": "Build lean, fast apps on the web.",
+      "mainEntity": {
+        "url": "https://webassembly.org/"
+      }
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "Barcode",
+      "text": "CAP-abi-LITY"
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/capabilities/",
+      "name": "New Web Capabilities",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/new-web-capabilities.jpg",
+      "description": "Next gen goodies"
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "Barcode",
+      "text": "788000439715"
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/chrome-dino/",
+      "name": "Chrome Dino!",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/chrome-dino.jpg",
+      "description": "Jump Jump Jump"
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "ARImageTarget",
+      "name": "Surma",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/surma.jpg",
+      "encoding": [
+        {
+          "@type": "MediaObject",
+          "contentUrl": "https://io.perceptiontoolkit.dev/static/images/targets/surma.pb",
+          "encodingFormat": "application/octet+pd"
+        }
+      ]
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/surma/",
+      "name": "Surma",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/surma.jpg",
+      "description": "Surma"
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "ARImageTarget",
+      "name": "Immersive Web",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/immersive-web.jpg",
+      "encoding": [
+        {
+          "@type": "MediaObject",
+          "contentUrl": "https://io.perceptiontoolkit.dev/static/images/targets/immersive-web.pb",
+          "encodingFormat": "application/octet+pd"
+        }
+      ]
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/immersive/",
+      "name": "Immersive Web",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/immersive-web.jpg",
+      "description": "3D and Augmented Reality"
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "ARImageTarget",
+      "name": "AMP Stories",
+      "image": "https://io.perceptiontoolkit.dev/static/images/target-src/amp-stories.jpg",
+      "encoding": [
+        {
+          "@type": "MediaObject",
+          "contentUrl": "https://io.perceptiontoolkit.dev/static/images/targets/amp-stories.pb",
+          "encodingFormat": "application/octet+pd"
+        }
+      ]
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/amp-stories/",
+      "name": "AMP Stories",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/amp-stories.jpg",
+      "description": "A story experience for the web",
+      "mainEntity": {
+        "url": "https://amp.dev/"
+      }
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "ARImageTarget",
+      "name": "Web Dev on chromeOS",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/web-dev-cros.jpg",
+      "encoding": [
+        {
+          "@type": "MediaObject",
+          "contentUrl": "https://io.perceptiontoolkit.dev/static/images/targets/web-dev-cros.pb",
+          "encodingFormat": "application/octet+pd"
+        }
+      ]
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/web-dev-cros/",
+      "name": "Web Dev on chromeOS",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/web-dev-cros.jpg"
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "ARImageTarget",
+      "name": "Linux on chromeOS",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/linux-cros.jpg",
+      "encoding": [
+        {
+          "@type": "MediaObject",
+          "contentUrl": "https://io.perceptiontoolkit.dev/static/images/targets/linux-cros.pb",
+          "encodingFormat": "application/octet+pd"
+        }
+      ]
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/linux-cros/",
+      "name": "Linux on chromeOS",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/linux-cros.jpg"
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "ARImageTarget",
+      "name": "Google Pay Business",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/google-pay-business.jpg",
+      "encoding": [
+        {
+          "@type": "MediaObject",
+          "contentUrl": "https://io.perceptiontoolkit.dev/static/images/targets/google-pay.pb",
+          "encodingFormat": "application/octet+pd"
+        }
+      ]
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/google-pay/",
+      "name": "Google Pay Business",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/google-pay-business.jpg",
+      "description": "A better way to pay"
+    }
+  },
+  {
+    "@context": "http://schema.org",
+    "@type": "ARArtifact",
+    "arTarget": {
+      "@type": "ARImageTarget",
+      "name": "Game Dev on chromeOS",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/game-dev-cros.jpg",
+      "encoding": [
+        {
+          "@type": "MediaObject",
+          "contentUrl": "https://io.perceptiontoolkit.dev/static/images/targets/game-dev-cros.pb",
+          "encodingFormat": "application/octet+pd"
+        }
+      ]
+    },
+    "arContent": {
+      "@type": "WebPage",
+      "url": "https://io.perceptiontoolkit.dev/details/game-dev-cros/",
+      "name": "Game Dev on chromeOS",
+      "image": "https://io.perceptiontoolkit.dev/static/images/items/game-dev-cros.jpg"
+    }
+  }
+]
