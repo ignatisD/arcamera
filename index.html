@@ -120,6 +120,7 @@
         }
 
         #test {
+            display: none;
             position: fixed;
             top: 5px;
             left: 50%;
@@ -210,17 +211,17 @@
 	            document.getElementById('test').addEventListener("click", (evt) => {
 	                evt.preventDefault();
 
-		            // const card = getCard({
-			        //     name: "WebChat",
-			        //     description: "WebChat is a simple chat application for web and mobile alike.",
-			        //     image: "https://webchat.gr/images/webchat@2x.png",
-			        //     price: {
-			        //     	value: "50.00",
-			        //         currency: "EUR"
-			        //     },
-			        //     url: "https://webchat.gr/"
-		            // });
-		            const card = getCard(new URL("https://webchat.gr/"));
+		            const card = getCard({
+			            name: "WebChat",
+			            description: "WebChat is a simple chat application for web and mobile alike.",
+			            image: "https://webchat.gr/images/webchat@2x.png",
+			            price: {
+			            	value: "50.00",
+			                currency: "EUR"
+			            },
+			            url: "https://webchat.gr/"
+		            });
+		            // const card = getCard(new URL("https://webchat.gr/"));
 	                card.dataset.notRecognized = true;
 	                cardContainer.appendChild(card);
                 })
@@ -331,10 +332,10 @@
 			            "allow-popups " +
 			            "allow-pointer-lock " +
 			            "allow-forms";
+		            card.height = height;
 	            }
 	            card.src = content;
 	            card.width = width;
-	            card.height = height;
 	            return card;
             }
             // Embed the toolkit.
