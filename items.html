@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AR Camera Objects</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Ignatios Drakoulas"/>
+    <meta name="description" content="AR Camera Objects Demo">
+    <meta name="theme-color" content="#373b44"/>
+    <base href="/"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<header class="container text-center">
+    <h1>Available Objects</h1>
+</header>
+<main class="container">
+    <div class="card-deck" id="deck">
+
+        <div class="card">
+            <img src="assets/img/qrcodes/gaiagreek.png" class="card-img-top" alt="Gaia Greek">
+            <div class="card-body">
+                <h5 class="card-title">Gaia Greek</h5>
+                <p class="card-text">A Greek company, located in Kiato Korinthias, which does wholesale in the pasta
+                    sector.</p>
+                <a href="https://gaiagreek.gr/" target="_blank" class="card-link">https://gaiagreek.gr/</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="assets/img/qrcodes/ignatisd.png" class="card-img-top" alt="Ignatios">
+            <div class="card-body">
+                <h5 class="card-title">Ignatios Drakoulas</h5>
+                <p class="card-text">Web Developer - Personal website and portfolio.</p>
+                <a href="https://ignatisd.gr/" target="_blank" class="card-link">https://ignatisd.gr/</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="assets/img/qrcodes/webchat.png" class="card-img-top" alt="WebChat">
+            <div class="card-body">
+                <h5 class="card-title">WebChat</h5>
+                <p class="card-text">WebChat is a simple chat application for web and mobile alike.</p>
+                <a href="https://webchat.gr/" target="_blank" class="card-link">https://webchat.gr/</a>
+            </div>
+        </div>
+
+    </div>
+</main>
+<footer class="container mt-4 alert alert-dark">
+    <pre>
+[
+    {
+        "@context": "https://schema.googleapis.com/",
+        "@type": "ARArtifact",
+        "arTarget": {
+            "@type": "Barcode",
+            "text": "https://gaiagreek.gr"
+        },
+        "arContent": {
+            "@type": "WebPage",
+            "url": "https://gaiagreek.gr/",
+            "name": "Gaia Greek",
+            "image": "https://gaiagreek.gr/images/slider/gaia_greek_slider.png",
+            "description": "A Greek company, located in Kiato Korinthias, which does wholesale in the pasta sector.",
+            "mainEntity": {
+                "url": "https://gaiagreek.gr/"
+            }
+        }
+    },
+    {
+        "@context": "https://schema.googleapis.com/",
+        "@type": "ARArtifact",
+        "arTarget": {
+            "@type": "Barcode",
+            "text": "https://ignatisd.gr"
+        },
+        "arContent": {
+            "@type": "WebPage",
+            "url": "https://ignatisd.gr/",
+            "name": "Ignatios Drakoulas - Web Developer Portfolio",
+            "image": "https://ignatisd.gr/assets/img/ignatios-dive.jpg",
+            "description": "Ignatios Drakoulas - Web Developer - Personal website and portfolio.",
+            "mainEntity": {
+                "url": "https://ignatisd.gr/"
+            }
+        }
+    },
+    {
+        "@context": "https://schema.googleapis.com/",
+        "@type": "ARArtifact",
+        "arTarget": {
+            "@type": "Barcode",
+            "text": "https://webchat.gr"
+        },
+        "arContent": {
+            "@type": "WebPage",
+            "url": "https://webchat.gr/",
+            "name": "WebChat",
+            "image": "https://webchat.gr/images/webchat@2x.png",
+            "description": "WebChat is a simple chat application for web and mobile alike.",
+            "mainEntity": {
+                "url": "https://webchat.gr/"
+            }
+        }
+    }
+]
+    </pre>
+</footer>
+</body>
+</html>
