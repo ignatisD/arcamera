@@ -11,7 +11,7 @@
         window.addEventListener(Events.DeviceNotSupported, onDeviceNotSupported);
         window.addEventListener("pt.markerdetect", onMarkerDetect);
 
-        // document.getElementById('test').addEventListener("click", showCard);
+        document.getElementById('test').addEventListener("click", showCard);
     }
 
     function onPerceivedResults(evt) {
@@ -121,7 +121,6 @@
             },
             url: "https://webchat.gr/"
         });
-        // const card = getCard(new URL("https://webchat.gr/"));
         card.dataset.notRecognized = true;
         cardContainer.appendChild(card);
     }

@@ -119,22 +119,6 @@
             cursor: pointer;
         }
 
-        #test {
-            /*display: none;*/
-            position: fixed;
-            bottom: 45px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 8px 12px;
-            background: #FFF;
-            border: none;
-            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
-            border-radius: 3px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-
         #get-started.visible {
             display: block;
         }
@@ -157,8 +141,25 @@
             text-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
         }
         .footer a {
-            color: white!important;
+            color: white;
         }
+        #qrcodes {
+            /*display: none;*/
+            position: fixed;
+            bottom: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 12px;
+            background: #FFF;
+            color: black;
+            border: none;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
     </style>
     <script>
 	    var idbKeyval=function(e){"use strict";class t{constructor(e="keyval-store",t="keyval"){this.storeName=t,this._dbp=new Promise((r,n)=>{const o=indexedDB.open(e,1);o.onerror=(()=>n(o.error)),o.onsuccess=(()=>r(o.result)),o.onupgradeneeded=(()=>{o.result.createObjectStore(t)})})}_withIDBStore(e,t){return this._dbp.then(r=>new Promise((n,o)=>{const s=r.transaction(this.storeName,e);s.oncomplete=(()=>n()),s.onabort=s.onerror=(()=>o(s.error)),t(s.objectStore(this.storeName))}))}}let r;function n(){return r||(r=new t),r}return e.Store=t,e.get=function(e,t=n()){let r;return t._withIDBStore("readonly",t=>{r=t.get(e)}).then(()=>r.result)},e.set=function(e,t,r=n()){return r._withIDBStore("readwrite",r=>{r.put(t,e)})},e.del=function(e,t=n()){return t._withIDBStore("readwrite",t=>{t.delete(e)})},e.clear=function(e=n()){return e._withIDBStore("readwrite",e=>{e.clear()})},e.keys=function(e=n()){const t=[];return e._withIDBStore("readonly",e=>{(e.openKeyCursor||e.openCursor).call(e).onsuccess=function(){this.result&&(t.push(this.result.key),this.result.continue())}}).then(()=>t)},e}({});
@@ -168,15 +169,13 @@
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 </head>
 <body>
-    <header class="text-center spacetop">
-        <a href="items.html" id="test">Get or create QR Codes</a>
-    </header>
     <div class="container"></div>
     <main class="text-center">
         <button id="get-started">Start Scanning</button>
     </main>
     <footer class="footer">
-        Developed by <a href="https://ignatisd.gr/" rel="author">ignatisd.gr</a>
+        <a href="items.html" id="qrcodes">Get or create QR Codes</a>
+        <span id="test">Developed</span> by <a href="https://ignatisd.gr/" rel="author">ignatisd.gr</a>
     </footer>
     <script src="assets/js/main.js?v=1"></script>
 </body>
