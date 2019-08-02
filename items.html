@@ -9,8 +9,11 @@
     <meta name="description" content="AR Camera Objects Demo">
     <meta name="theme-color" content="#373b44"/>
     <base href="/"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="assets/js/jquery.qrcode.min.js"></script>
 </head>
 <body>
 <header class="container text-center">
@@ -48,6 +51,63 @@
         </div>
 
     </div>
+    <form id="form" class="mt-3">
+        <div class="row">
+            <div class="col">
+                <div class="form-group has-feedback">
+                    <label for="ssid" class="control-label">SSID</label>
+                    <div class="input-group">
+                        <span id="basic-addon-ssid" class="input-group-addon"><i class="glyphicon glyphicon-signal"></i></span>
+                        <input type="text" id="ssid" name="ssid" class="form-control" placeholder="WIFI name" aria-describedby="basic-addon-ssid" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group has-feedback" id="key-p">
+                    <label class="control-label">Key</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addon-wrapping"><i class="fa fa-lock"></i></span>
+                        </div>
+                        <input type="password" id="key" name="key" class="form-control" placeholder="key" aria-describedby="basic-addon1" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="display-key"><i class="fa fa-eye-slash" id="display-key-icon"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="enc" class="control-label">Encryption</label>
+                    <div class="input-group">
+                        <select name="enc" id="enc" class="form-control">
+                            <option value="WPA">WPA/WPA2</option>
+                            <option value="WEP">WEP</option>
+                            <option value="nopass">None</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label class="control-label">&nbsp;</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="hidden" id="hidden" data-toggle="tooltip" title="Is your SSID hidden?">
+                        <label class="form-check-label" for="hidden">Hidden</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <button id="generate" class="btn btn-primary">Generate!</button>
+            <a href="#" id="export" style="display: none" class="btn" target="_blank" data-toggle="tooltip" title="Export the QR code as a PNG.">Export!</a>
+        </div>
+    </form>
+    <div id="qrcode"></div>
 </main>
 <footer class="container mt-4 alert alert-dark">
     <pre>
@@ -109,5 +169,69 @@
 ]
     </pre>
 </footer>
+<script>
+    $(document).ready(function(){
+        function escape_string (string) {
+            var to_escape = ['\\', ';', ',', ':', '"'];
+            var hex_only = /^[0-9a-f]+$/i;
+            var output = "";
+            for (var i=0; i<string.length; i++) {
+                if($.inArray(string[i], to_escape) != -1) {
+                    output += '\\'+string[i];
+                }
+                else {
+                    output += string[i];
+                }
+            }
+            //if (hex_only.test(output)) {
+            //    output = '"'+output+'"';
+            //}
+            return output;
+        };
+
+        function generate () {
+            var ssid = $('#ssid').val();
+            var hidden = $('#hidden').is(':checked');
+            var enc = $('#enc').val();
+            var key = '';
+            if (enc !== 'nopass') {
+                key = $('#key').val();
+            }
+            // https://github.com/zxing/zxing/wiki/Barcode-Contents#wifi-network-config-android
+            var qrstring = 'WIFI:S:'+escape_string(ssid)+';T:'+enc+';P:'+escape_string(key)+';';
+            if (hidden) {
+                qrstring += 'H:true';
+            }
+            qrstring += ';';
+            $('#qrcode').empty();
+            $('#qrcode').qrcode(qrstring);
+            $('#save').show();
+
+            var canvas = $('#qrcode canvas');
+            if (canvas.length == 1) {
+                var data = canvas[0].toDataURL('image/png');
+                var e = $('#export');
+                e.attr('href', data);
+                e.attr('download', ssid+'-qrcode.png');
+                // e.show() sets display:inline, but we need inline-block
+                e.css('display', 'inline-block');
+            }
+        };
+        $('#form').submit(function() {
+            generate();
+            return false;
+        });
+        $('#display-key').click(function() {
+            var $key = $("#key");
+            if ($key.attr('type') === 'password') {
+                $key.attr('type', 'text');
+                $("#display-key-icon").removeClass("fa-eye-slash").addClass("fa-eye");
+            } else {
+                $key.attr('type', 'password');
+                $("#display-key-icon").addClass("fa-eye-slash").removeClass("fa-eye");
+            }
+        });
+    });
+</script>
 </body>
 </html>
