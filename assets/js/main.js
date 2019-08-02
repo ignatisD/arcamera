@@ -9,7 +9,7 @@
         window.addEventListener(Events.CameraAccessDenied, onCameraAccessDenied);
         // Fires the if the device does not have the required APIs.
         window.addEventListener(Events.DeviceNotSupported, onDeviceNotSupported);
-        // window.addEventListener("pt.markerdetect", onMarkerDetect);
+        window.addEventListener("pt.markerdetect", onMarkerDetect);
 
         // document.getElementById('test').addEventListener("click", showCard);
     }
@@ -61,8 +61,9 @@
             card.appendChild(button);
 
             const button2 = new Elements.ActionButton();
-            button2.label = 'Close';
+            button2.label = 'Go';
             button2.addEventListener('click', () => {
+                window.open(card.src.url);
                 card.close();
             });
             card.appendChild(button2);
@@ -83,8 +84,29 @@
         const { Elements } = window.PerceptionToolkit;
         // Take control of the UI rendering.
         evt.preventDefault();
+        if (cardContainer.childNodes.length > 0) {
+            return;
+        }
         const detail = evt.detail;
-        alert(JSON.stringify(detail, null, 2));
+        let card;
+        try {
+            if (/^https?/.test(detail)) {
+                card = getCard(new URL(detail));
+                const button2 = new Elements.ActionButton();
+                button2.label = 'Go';
+                button2.addEventListener('click', () => {
+                    window.open(card.src.url);
+                    card.close();
+                });
+                card.appendChild(button2);
+            } else {
+                card = getCard(detail);
+            }
+            card.dataset.notRecognized = true;
+            cardContainer.appendChild(card);
+        } catch (e) {
+            alert(e.message);
+        }
     }
 
     function showCard(evt) {
