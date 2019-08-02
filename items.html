@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>AR Camera Objects</title>
+    <title>AR Camera QrCode Objects</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -9,19 +9,19 @@
     <meta name="description" content="AR Camera Objects Demo">
     <meta name="theme-color" content="#373b44"/>
     <base href="/"/>
+    <link rel="icon" href="assets/img/arcamera.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery.qrcode.min.js"></script>
 </head>
 <body>
 <header class="container text-center">
-    <h1>Available Objects</h1>
+    <h1 class="my-3">Available QrCode Objects</h1>
 </header>
 <main class="container">
     <div class="card-deck" id="deck">
-
         <div class="card">
             <img src="assets/img/qrcodes/gaiagreek.png" class="card-img-top" alt="Gaia Greek">
             <div class="card-body">
@@ -49,68 +49,106 @@
                 <a href="https://webchat.gr/" target="_blank" class="card-link">https://webchat.gr/</a>
             </div>
         </div>
-
     </div>
-    <form id="form" class="mt-3">
-        <div class="row">
-            <div class="col">
-                <div class="form-group has-feedback">
-                    <label for="ssid" class="control-label">SSID</label>
-                    <div class="input-group">
-                        <span id="basic-addon-ssid" class="input-group-addon"><i class="glyphicon glyphicon-signal"></i></span>
-                        <input type="text" id="ssid" name="ssid" class="form-control" placeholder="WIFI name" aria-describedby="basic-addon-ssid" required>
+    <div class="card mt-2">
+        <div class="card-header">
+            <h3>Generate a WiFi QrCode</h3>
+        </div>
+        <div class="card-body">
+            <form id="form" class="mt-2">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group has-feedback">
+                            <label for="ssid" class="control-label">SSID</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label id="basic-addon-ssid"  class="input-group-text" for="ssid"><i class="fa fa-wifi"></i></label>
+                                </div>
+                                <input type="text" id="ssid" name="ssid" class="form-control" placeholder="WIFI name" aria-describedby="basic-addon-ssid" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group has-feedback" id="key-p">
+                            <label class="control-label" for="key">Key</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" id="addon-wrapping" for="key"><i class="fa fa-lock"></i></label>
+                                </div>
+                                <input type="password" id="key" name="key" class="form-control" placeholder="key" aria-describedby="basic-addon1" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="display-key"><i class="fa fa-eye-slash" id="display-key-icon"></i></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="form-group has-feedback" id="key-p">
-                    <label class="control-label">Key</label>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="enc" class="control-label">Encryption</label>
+                            <div class="input-group">
+                                <select name="enc" id="enc" class="form-control">
+                                    <option value="WPA">WPA/WPA2</option>
+                                    <option value="WEP">WEP</option>
+                                    <option value="nopass">None</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label">&nbsp;</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="hidden" id="hidden" data-toggle="tooltip" title="Is your SSID hidden?">
+                                <label class="form-check-label" style="user-select: none;" for="hidden">Hidden</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Generate!</button>
+                    <a href="#" id="export" style="display: none" class="btn btn-export" target="_blank" data-toggle="tooltip" title="Export the QR code as a PNG.">Export!</a>
+                    <button class="btn btn-secondary float-right clear" type="button">Clear</button>
+                </div>
+            </form>
+            <div class="text-center qrcode" id="qrcode"></div>
+        </div>
+    </div>
+    <div class="card mt-2">
+        <div class="card-header">
+            <h3>Generate a Text QrCode</h3>
+        </div>
+        <div class="card-body">
+            <form id="form-2" class="mt-2">
+                <div class="form-group has-feedback">
+                    <label for="ssid" class="control-label">Text</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="addon-wrapping"><i class="fa fa-lock"></i></span>
+                            <label id="basic-addon-text" class="input-group-text" for="text"><i class="fa fa-pencil"></i></label>
                         </div>
-                        <input type="password" id="key" name="key" class="form-control" placeholder="key" aria-describedby="basic-addon1" required>
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="display-key"><i class="fa fa-eye-slash" id="display-key-icon"></i></span>
-                        </div>
+                        <input type="text" id="text" name="text" class="form-control" placeholder="Type your text..." aria-describedby="basic-addon-text" required>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
                 <div class="form-group">
-                    <label for="enc" class="control-label">Encryption</label>
-                    <div class="input-group">
-                        <select name="enc" id="enc" class="form-control">
-                            <option value="WPA">WPA/WPA2</option>
-                            <option value="WEP">WEP</option>
-                            <option value="nopass">None</option>
-                        </select>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Generate!</button>
+                    <a href="#" id="export2" style="display: none" class="btn btn-export" target="_blank" data-toggle="tooltip" title="Export the QR code as a PNG.">Export!</a>
+                    <button class="btn btn-secondary float-right clear" type="button">Clear</button>
                 </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label class="control-label">&nbsp;</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="hidden" id="hidden" data-toggle="tooltip" title="Is your SSID hidden?">
-                        <label class="form-check-label" for="hidden">Hidden</label>
-                    </div>
-                </div>
-            </div>
+            </form>
+            <div class="text-center qrcode" id="qrcode2"></div>
         </div>
-
-
-        <div class="form-group">
-            <button id="generate" class="btn btn-primary">Generate!</button>
-            <a href="#" id="export" style="display: none" class="btn" target="_blank" data-toggle="tooltip" title="Export the QR code as a PNG.">Export!</a>
-        </div>
-    </form>
-    <div id="qrcode"></div>
+    </div>
 </main>
 <footer class="container mt-4 alert alert-dark">
-    <pre>
+    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Show the JSON+ld Data objects
+    </button>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <pre><code>
 [
     {
         "@context": "https://schema.googleapis.com/",
@@ -167,7 +205,9 @@
         }
     }
 ]
-    </pre>
+            </code></pre>
+        </div>
+    </div>
 </footer>
 <script>
     $(document).ready(function(){
@@ -176,49 +216,55 @@
             var hex_only = /^[0-9a-f]+$/i;
             var output = "";
             for (var i=0; i<string.length; i++) {
-                if($.inArray(string[i], to_escape) != -1) {
+                if($.inArray(string[i], to_escape) !== -1) {
                     output += '\\'+string[i];
                 }
                 else {
                     output += string[i];
                 }
             }
-            //if (hex_only.test(output)) {
-            //    output = '"'+output+'"';
-            //}
             return output;
-        };
-
-        function generate () {
-            var ssid = $('#ssid').val();
-            var hidden = $('#hidden').is(':checked');
-            var enc = $('#enc').val();
-            var key = '';
-            if (enc !== 'nopass') {
-                key = $('#key').val();
-            }
-            // https://github.com/zxing/zxing/wiki/Barcode-Contents#wifi-network-config-android
-            var qrstring = 'WIFI:S:'+escape_string(ssid)+';T:'+enc+';P:'+escape_string(key)+';';
-            if (hidden) {
-                qrstring += 'H:true';
-            }
-            qrstring += ';';
-            $('#qrcode').empty();
-            $('#qrcode').qrcode(qrstring);
-            $('#save').show();
-
-            var canvas = $('#qrcode canvas');
-            if (canvas.length == 1) {
-                var data = canvas[0].toDataURL('image/png');
-                var e = $('#export');
-                e.attr('href', data);
-                e.attr('download', ssid+'-qrcode.png');
-                // e.show() sets display:inline, but we need inline-block
-                e.css('display', 'inline-block');
-            }
-        };
+        }
         $('#form').submit(function() {
-            generate();
+	        var ssid = $('#ssid').val();
+	        var hidden = $('#hidden').is(':checked');
+	        var enc = $('#enc').val();
+	        var key = '';
+	        if (enc !== 'nopass') {
+		        key = $('#key').val();
+	        }
+	        // https://github.com/zxing/zxing/wiki/Barcode-Contents#wifi-network-config-android
+	        var qrstring = 'WIFI:S:'+escape_string(ssid)+';T:'+enc+';P:'+escape_string(key)+';';
+	        if (hidden) {
+		        qrstring += 'H:true';
+	        }
+	        qrstring += ';';
+	        $('#qrcode').empty();
+	        $('#qrcode').qrcode(qrstring);
+
+	        var canvas = $('#qrcode canvas');
+	        if (canvas.length === 1) {
+		        var data = canvas[0].toDataURL('image/png');
+		        var e = $('#export');
+		        e.attr('href', data);
+		        e.attr('download', ssid+'-qrcode.png');
+		        e.show();
+	        }
+            return false;
+        });
+        $('#form-2').submit(function() {
+	        var qrstring = $('#text').val();
+	        $('#qrcode2').empty();
+	        $('#qrcode2').qrcode({width: 512,height: 512,text: qrstring});
+
+	        var canvas = $('#qrcode2 canvas');
+	        if (canvas.length === 1) {
+		        var data = canvas[0].toDataURL('image/png');
+		        var e = $('#export2');
+		        e.attr('href', data);
+		        e.attr('download', 'test-qrcode.png');
+		        e.show();
+	        }
             return false;
         });
         $('#display-key').click(function() {
@@ -231,6 +277,13 @@
                 $("#display-key-icon").addClass("fa-eye-slash").removeClass("fa-eye");
             }
         });
+
+        $(".clear").on("click", function (event) {
+        	var form = $(this).parents("form").first();
+	        form.trigger("reset");
+	        form.find(".btn-export").first().hide();
+	        form.siblings(".qrcode").first().empty();
+        })
     });
 </script>
 </body>
